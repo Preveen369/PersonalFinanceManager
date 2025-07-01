@@ -1,9 +1,14 @@
 package personalfinancemanager.app;
 
-public class FinanceApp {
+import java.io.File;
+import personalfinancemanager.view.ConsoleUI;
+import personalfinancemanager.util.BannerPrinter;
 
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class FinanceApp {
     
+    public static void main(String[] args) {
+        new File("exports").mkdirs();
+        BannerPrinter.printBanner();
+        new ConsoleUI().run();
+    }
 }
