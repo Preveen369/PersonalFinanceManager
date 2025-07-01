@@ -1,13 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package personalfinancemanager.auth;
 
-/**
- *
- * @author PREVEEN S
- */
+import personalfinancemanager.models.User;
+
 public class Session {
-    
+    private static User currentUser;
+
+    public static void setUser(User user) {
+        currentUser = user;
+        System.out.println("[OK] Session started for user: " + user.getUsername());
+    }
+
+    public static User getUser() {
+        return currentUser;
+    }
+
+    public static boolean isAuthenticated() {
+        return currentUser != null;
+    }
+
+    public static void logout() {
+        if (currentUser != null) {
+            System.out.println("[Logout] " + currentUser.getUsername() + " has logged out.");
+        }
+        currentUser = null;
+    }
 }
