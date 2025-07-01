@@ -1,6 +1,5 @@
-# 📘 Personal Finance Manager (Console-Based Java Application)
+# 📘 Personal Finance Manager (Console-Based Java & MySQL Application)
 
----
 
 ## 📄 1. Project Overview
 
