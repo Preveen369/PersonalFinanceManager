@@ -33,7 +33,7 @@ public class ReportView {
             rows.add(new String[] {
                 String.valueOf(tx.getTransactionId()),
                 tx.getType(),
-                String.format("₹%.2f", tx.getAmount()),
+                String.format("Rs.%.2f", tx.getAmount()),
                 String.valueOf(tx.getCategoryId()),
                 tx.getTimestamp().toString(),
                 tx.getNote() != null ? tx.getNote() : "-"
@@ -45,7 +45,7 @@ public class ReportView {
 
     public void printMonthlyBreakdown(int userId) {
         int year = ConsoleInput.readInt("Enter year (e.g. 2025): ");
-        int month = ConsoleInput.readInt("Enter month (1–12): ");
+        int month = ConsoleInput.readInt("Enter month (1-12): ");
 
         Map<String, Double> breakdown = financeService.getMonthlyCategoryBreakdown(userId, year, month);
         if (breakdown.isEmpty()) {
@@ -58,7 +58,7 @@ public class ReportView {
         for (var entry : breakdown.entrySet()) {
             rows.add(new String[] {
                 entry.getKey(),
-                String.format("₹%.2f", entry.getValue())
+                String.format("%.2f", entry.getValue())
             });
         }
         TablePrinter.printGrid(rows, new int[] { 20, 12 });
@@ -78,14 +78,14 @@ public class ReportView {
         System.out.println("\n[OK] Top 3 Spending Categories:");
         int rank = 1;
         for (var entry : top) {
-            System.out.printf("%d. %-20s ₹%.2f\n", rank++, entry.getKey(), entry.getValue());
+            System.out.printf("%d. %-20s Rs.%.2f\n", rank++, entry.getKey(), entry.getValue());
         }
     }
 
     public void printSavings(int userId) {
         double savings = financeService.getNetSavings(userId);
         String symbol = savings >= 0 ? "[OK]" : "[X]️";
-        System.out.printf("\n%s Net Savings: ₹%.2f\n", symbol, savings);
+        System.out.printf("\n%s Net Savings:  Rs.%.2f\n", symbol, savings);
     }
     
     public void printBudgetSummary(int userId) {
@@ -101,7 +101,7 @@ public class ReportView {
             System.out.println("[!] You haven’t set a budget for this month yet.");
         } else {
             String emoji = spent > budget ? "[OK]" : "[X]️";
-            System.out.printf("%s Spent ₹%.2f of ₹%.2f for %s %d\n", emoji, spent, budget, now.getMonth(), year);
+            System.out.printf("%s Spent Rs.%.2f of Rs.%.2f for %s %d\n", emoji, spent, budget, now.getMonth(), year);
         }
     }
 
@@ -109,19 +109,19 @@ public class ReportView {
     public void promptNewTransaction(int userId) {
         System.out.println("\n=== Add New Transaction ===");
 
-        // 🔎 Show available accounts
+        // Show available accounts
         var accounts = financeService.getAccountsByUser(userId);
         if (accounts.isEmpty()) {
-            System.out.println("⚠️ No accounts found. Create one first!");
+            System.out.println("[!] No accounts found. Create one first!");
             return;
         }
         System.out.println("[OK] Your Accounts:");
         System.out.printf("%-5s %-20s %-10s\n", "ID", "Name", "Balance");
         for (var acc : accounts) {
-            System.out.printf("%-5d %-20s ₹%.2f\n", acc.getAccountId(), acc.getName(), acc.getBalance());
+            System.out.printf("%-5d %-20s Rs.%.2f\n", acc.getAccountId(), acc.getName(), acc.getBalance());
         }
 
-        // 🔎 Show available categories
+        // Show available categories
         var categories = financeService.getCategoriesByUser(userId);
         if (categories.isEmpty()) {
             System.out.println("[!]️ No categories available. Create one first!");
@@ -133,16 +133,16 @@ public class ReportView {
             System.out.printf("%-5d %-20s\n", cat.getCategoryId(), cat.getName());
         }
 
-        // ✅ Proceed with transaction input
+        // Proceed with transaction input
         int accountId = ConsoleInput.readInt("Account ID: ");
         int categoryId = ConsoleInput.readInt("Category ID: ");
-        double amount = ConsoleInput.readDouble("Amount (₹): ");
+        double amount = ConsoleInput.readDouble("Amount (Rs.): ");
         String type;
         do {
             type = ConsoleInput.readString("Type (INCOME or EXPENSE): ").toUpperCase();
         } while (!type.equals("INCOME") && !type.equals("EXPENSE"));
 
-        LocalDate date = ConsoleInput.readDate("Transaction date (yyyy-MM-dd): ");
+        LocalDate date = ConsoleInput.readDate("Transaction date");
         String note = ConsoleInput.readString("Note (optional): ");
 
         Transaction tx = new Transaction(
@@ -210,7 +210,7 @@ public class ReportView {
         String name = ConsoleInput.readString("Account name: ");
         double balance = ConsoleInput.readDouble("Opening balance: ");
         boolean success = financeService.createAccount(userId, name, balance);
-        System.out.println(success ? "✅ Account created!" : "❌ Failed to create account.");
+        System.out.println(success ? "[OK] Account created!" : "[ERROR] Failed to create account.");
     }
 
     private void showAccounts(int userId) {
@@ -226,7 +226,7 @@ public class ReportView {
             rows.add(new String[] {
                 String.valueOf(acc.getAccountId()),
                 acc.getName(),
-                String.format("₹%.2f", acc.getBalance())
+                String.format("%.2f", acc.getBalance())
             });
         }
         TablePrinter.printGrid(rows, new int[] { 5, 20, 12 });
@@ -318,14 +318,14 @@ public class ReportView {
                         .values().stream().mapToDouble(Double::doubleValue).sum();
 
         String status = spent > budget ? "[X]️ Over budget!" : "[OK] Within budget.";
-        System.out.printf("\n📅 Budget: ₹%.2f | Spent: ₹%.2f → %s\n", budget, spent, status);
+        System.out.printf("\n Budget: Rs.%.2f | Spent: Rs.%.2f -> %s\n", budget, spent, status);
     }
 
         public ExportService exportService; 
         
         public void exportAllTx(int userId) {
             boolean success = exportService.exportAllTransactions(userId);
-            System.out.println(success ? "✅ Exported to 'exports/transactions_*.csv'" : "❌ No transactions found.");
+            System.out.println(success ? "Exported to 'exports/transactions_*.csv'" : "No transactions found.");
         }
 
         public void exportSummary(int userId) {
