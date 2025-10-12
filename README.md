@@ -1,13 +1,13 @@
 # 📘 Personal Finance Manager App (Console-Based Java & MySQL Application)
 
 
-## 📄 1. Project Overview
+## 📄 Project Overview
 
-The *Personal Finance Manager* is a modular, menu-driven Java console application built to help individuals track, analyze, and manage their finances across multiple accounts and categories. Developed with JDBC and backed by MySQL, it provides a structured workflow for users to log transactions, monitor budgets, and export financial summaries—all in an offline, framework-free environment.
+The **Personal Finance Manager** is a modular, menu-driven Java console application built to help individuals track, analyze, and manage their finances across multiple accounts and categories. Developed with JDBC and backed by MySQL, it provides a structured workflow for users to log transactions, monitor budgets, and export financial summaries—all in an offline, framework-free environment.
 
 ---
 
-## 🎯 2. Objectives
+## 🎯 Objectives
 
 - Design a clear, interactive interface for personal finance operations  
 - Enable CRUD operations on accounts, categories, and transactions  
@@ -18,7 +18,7 @@ The *Personal Finance Manager* is a modular, menu-driven Java console applicatio
 
 ---
 
-## 🧱 3. System Architecture
+## 🧱 System Architecture
 
 ### 🔹 Layered Design
 
@@ -33,7 +33,7 @@ The *Personal Finance Manager* is a modular, menu-driven Java console applicatio
 
 ---
 
-## 🧪 4. Functional Modules
+## 🧪 Functional Modules
 
 | Module                | Responsibilities                                                   |
 |-----------------------|--------------------------------------------------------------------|
@@ -47,7 +47,7 @@ The *Personal Finance Manager* is a modular, menu-driven Java console applicatio
 
 ---
 
-## 📂 5. Database Schema
+## 📂 Database Schema
 
 **Database Name:** `personal_finance_db`
 
@@ -102,7 +102,7 @@ CREATE TABLE budgets (
 
 ---
 
-## 🖥️ 6. Sample Output (Console Snapshot)
+## 🖥️ Sample Output (Console Snapshot)
 
 ```
 === Personal Finance Manager ===
@@ -124,7 +124,7 @@ CREATE TABLE budgets (
 
 ---
 
-## 🚀 7. How to Run
+## 🧑‍💻 How to Run
 
 1. Install **Java 17+** and **MySQL Server**
 2. Create the database and tables using the provided `schema.sql`
@@ -138,7 +138,7 @@ java -cp bin personalfinancemanager.FinanceApp
 
 ---
 
-## 🧾 8. CSV Export Example
+## 🧾 CSV Export Example
 A sample file will be saved inside the exports/ directory as:
 ```
 transactions_20250701_113212.csv
@@ -175,15 +175,11 @@ Pull requests are welcome! Feel free to fork the repository and submit improveme
 ---
 
 ## 📧 Contact
-
 For queries or suggestions:
-- 📧 Email: spreveen123@gmail.com
-- 🌐 LinkedIn: www.linkedin.com/in/preveen-s-17250529b/
+- 📩 Email: [spreveen123@gmail.com](mailto:spreveen123@gmail.com)
+- 🌐 LinkedIn: [www.linkedin.com/in/preveen-s-17250529b/](https://www.linkedin.com/in/preveen-s-17250529b/)
 
 ---
 
-## 🌟 Show your support
-
-If you find this project helpful or interesting, please consider giving it a ⭐ on GitHub to show your support!
-
----
+## 🌟 Show Your Support
+If you like this project, please consider giving it a ⭐ on GitHub!
